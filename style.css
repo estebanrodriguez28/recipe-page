@@ -17,11 +17,14 @@
   --brown-800: hsl(14, 45%, 36%);
   --rose-800: hsl(332, 51%, 32%);
   --rose-50: hsl(330, 100%, 98%);
+
+  --recipe-card-padding: 2.5rem;
+
+  --reverse-card-padding: calc(var(--recipe-card-padding) * -1);
 }
 
 ul,
-ol,
-table {
+ol {
   padding-left: 1.25rem;
 }
 
@@ -48,15 +51,13 @@ body {
   align-items: center;
   min-height: 100dvh;
   font-family: "Outfit", sans-serif;
-  padding: 1.5rem;
   background-color: var(--stone-100);
   color: var(--stone-600);
 }
 
 .container {
-  width: min(100%, 30rem);
+  width: min(100%, 46rem);
   background-color: var(--white);
-  border-radius: 10px;
 }
 
 /* ==================================== */
@@ -66,25 +67,29 @@ body {
 .recipe {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
-  & img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
+
+  padding: var(--recipe-card-padding);
+  gap: 1.75rem 0rem;
+  /* Make the image the width of the whole card by adding the padding to its width, use negative margins to positon
+  image on the edges of the screen so image takes up the whole screen width. This way keep the html structure the same and padding is applied on larger screens for desktop design.
+  */
+  img {
+    width: calc(100% + var(--recipe-card-padding) * 2);
+    border-radius: 0px;
+    margin: var(--reverse-card-padding) var(--reverse-card-padding) 15px;
   }
 }
 
 .recipe-title {
-  font-size: 1.75rem;
-  font-weight: 700;
+  font-size: 2rem;
+  font-weight: 400;
   font-family: "YoungSerif", sans-serif;
   color: var(--stone-900);
   margin-bottom: 10px;
 }
 
 .recipe-description {
-  font-size: 0.65rem;
-  margin-bottom: 15px;
+  font-size: 1rem;
 }
 
 /* ==================================== */
@@ -95,18 +100,20 @@ body {
   background-color: var(--rose-50);
   padding: 1rem 1.5rem;
   border-radius: 10px;
-  & h2 {
+  h2 {
     color: var(--rose-800);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin: 10px 0px;
   }
 
-  & ul li {
-    margin: 1rem 0rem;
-    padding: 0rem 0.75rem;
-    &::marker {
-      color: var(--rose-800);
+  ul {
+    li {
+      margin: 0.75rem 0rem;
+      padding: 0rem 0.75rem;
+      &::marker {
+        color: var(--rose-800);
+      }
     }
   }
 }
@@ -116,11 +123,9 @@ body {
 /* ==================================== */
 
 .recipe-ingredients {
-  margin: 1.75rem 0rem;
-
   ul {
     li {
-      margin: 1rem 0rem;
+      margin: 0.75rem 0rem;
       padding: 0rem 1rem;
 
       &::marker {
@@ -142,11 +147,9 @@ body {
 /* ==================================== */
 
 .recipe-instructions {
-  margin: 1.75rem 0rem;
-
   ol {
     li {
-      margin: 1rem 0rem;
+      margin: 0.75rem 0rem;
       padding-left: 0.75rem;
 
       &::marker {
@@ -161,12 +164,8 @@ body {
 /* === Recipe Nutrition Section === */
 /* ==================================== */
 
-.recipe-nutrition {
-  margin: 1.75rem 0rem;
-}
-
 .nutrition-description {
-  font-size: 0.85rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -189,6 +188,30 @@ body {
     color: var(--brown-800);
     font-weight: 600;
     padding: 1rem;
+  }
+}
+
+/* ==================================== */
+/* === Responsiveness === */
+/* ==================================== */
+@media screen and (min-width: 768px) {
+  /* Tablets and up */
+
+  body {
+    padding: 1.5rem;
+  }
+
+  .container {
+    margin: 2.5rem 0rem;
+    border-radius: 10px;
+  }
+
+  .recipe {
+    img {
+      width: 100%;
+      margin: 0rem 0rem 15px 0rem;
+      border-radius: 10px;
+    }
   }
 }
 
