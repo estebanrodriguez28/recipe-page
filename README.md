@@ -28,15 +28,17 @@ This is a solution to the [Recipe page challenge on Frontend Mentor](https://www
 
 ## My process
 
-    Started by first analyzing the designs and seeing how to structure the html. I knew the different parts (Ingreidents, Instructions, Nutrition) could be split with sections tags. I saw that each section's heading had the same style (red with the Young Serif font). I noticed that each section lists followed similar formats (especially prepartion time and instructions) starting with list tag and then list items with a strong tag to emphasize the first word.
+Started by first analyzing the designs and seeing how to structure the html. I knew the different parts (Ingreidents, Instructions, Nutrition) could be split with sections tags. I saw that each section's heading had the same style (red with the Young Serif font). I noticed that each section lists followed similar formats (especially prepartion time and instructions) starting with list tag and then list items with a strong tag to emphasize the first word.
 
-    Using emmet I was able to first structure the html reasonably quickly for example for the lists this shortcut allowed me to quickly create the structure:
-    ```html
-    <!-- ul>li*3>strong -->
-    ```
-    While creating the structure I also started creating classes for elements I believed would need one before writing css.
+Using emmet I was able to first structure the html reasonably quickly for example for the lists this shortcut allowed me to quickly create the structure:
 
-    Then once html setup, I started with the css first the base styles (reset, fonts, centering on the page). Then started at the top of the page and worked down adding styles working section by section.
+```html
+<!-- ul>li*3>strong -->
+```
+
+While creating the structure I also started creating classes for elements I believed would need one before writing css.
+
+Then once html setup, I started with the css first the base styles (reset, fonts, centering on the page). Then started at the top of the page and worked down adding styles working section by section.
 
 ### Built with
 
