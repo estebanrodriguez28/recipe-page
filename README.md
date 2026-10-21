@@ -1,103 +1,175 @@
-# Frontend Mentor - Recipe page
+# Frontend Mentor - Recipe page solution
 
-![Design preview for the Recipe page coding challenge](./preview.jpg)
+This is a solution to the [Recipe page challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/recipe-page-KiTsR8QQKm). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+### Screenshot
 
-## The challenge
+![](assets/images/recipe-page-screenshot.png)
 
-Your challenge is to build out this recipe page and get it looking as close to the design as possible.
+### Links
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+- Live Site URL: [Live Site](https://estebanrodriguez28.github.io/recipe-page/)
 
-### Want some support on the challenge? 
+## My process
 
-[Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+    Started by first analyzing the designs and seeing how to structure the html. I knew the different parts (Ingreidents, Instructions, Nutrition) could be split with sections tags. I saw that each section's heading had the same style (red with the Young Serif font). I noticed that each section lists followed similar formats (especially prepartion time and instructions) starting with list tag and then list items with a strong tag to emphasize the first word.
 
-## Where to find everything
+    Using emmet I was able to first structure the html reasonably quickly for example for the lists this shortcut allowed me to quickly create the structure:
+    ```html
+    <!-- ul>li*3>strong -->
+    ```
+    While creating the structure I also started creating classes for elements I believed would need one before writing css.
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+    Then once html setup, I started with the css first the base styles (reset, fonts, centering on the page). Then started at the top of the page and worked down adding styles working section by section.
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+### Built with
 
-If you would like the Figma design file to gain experience using professional tools and build more accurate projects faster, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
 
-All the required assets for this project are in the `/assets` folder. The images are already exported for the correct screen size and optimized.
+### What I learned
 
-We also include variable and static font files for the required fonts for this project. You can choose to either link to Google Fonts or use the local font files to host the fonts yourself. Note that we've removed the static font files for the font weights that aren't needed for this project.
+I learned I can break up the recipe page into sections and with the hr tag add a line separating them which also defines a shift in topic.
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+```html
+<section class="recipe-ingredients">
+  <h2 class="recipe-section-header">Ingredients</h2>
+  <!-- Rest of section html -->
+</section>
+<hr />
+<section class="recipe-instructions">
+  <!-- Rest of section html -->
+</section>
+```
 
-## Using AI coding assistants
+However I learned how to use tables in html, which was a more appropriate fit for the nutrition section as the hr tag represents a shift in topic. The ingredient's nutritional values align more with a table which groups data with labels. The tr tag defines a new row, columns go within tr tags. The th tag defines the data header or label and td defines the data value. The scope on th says where the label applies (row or column in this case row).
 
-We've included two files to help you if you're using AI coding assistants (like Claude, GitHub Copilot, Cursor, etc.) while working on this challenge:
+```html
+<table class="nutrition-table">
+  <tr>
+    <th scope="row">Calories</th>
+    <td>277kcal</td>
+  </tr>
+  <tr>
+    <th scope="row">Carbs</th>
+    <td>0g</td>
+  </tr>
+  <tr>
+    <th scope="row">Protein</th>
+    <td>20g</td>
+  </tr>
+  <tr>
+    <th scope="row">Fat</th>
+    <td>22g</td>
+  </tr>
+</table>
+```
 
-- `AGENTS.md` - Contains detailed instructions for AI assistants on how to help you with this challenge. It's tailored to this challenge's difficulty level, so the AI will provide guidance appropriate to your learning stage—offering more support for beginner challenges and encouraging more independence on advanced ones.
-- `CLAUDE.md` - A pointer file that directs Claude-based tools to the AGENTS.md instructions.
+By default list items have a padding to the left of 40px, when I reset padding for my css reset I have to add padding to the list items myself. I was confused why without my reset the list items seem to be in the right place like the design. Claude explained was because of my reset.
 
-**How to use them:** You don't need to do anything! These files are automatically detected by most AI coding tools. The AI will read them and adjust its behavior to be a better learning partner—guiding you toward solutions rather than just giving you the answers.
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
 
-**Note:** These files are designed to help you *learn*, not to do the work for you. The AI is instructed to ask questions, give hints, and explain concepts rather than writing complete solutions.
+So I ended up keeping my padding reset and added my own padding as the normal padding was too much anyways and did not match the design as much.
 
-## Building your project
+```css
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+```
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+Back to the table I found a property called border-collapse which allowed me to add a border to the bottom of each row and use the last-child pseudo class to remove the border on the last row to match the design.
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+```css
+.nutrition-table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+  tr {
+    border-bottom: 1px solid var(--stone-150);
 
-## Deploying your project
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  th {
+    font-weight: 400;
+    padding: 1rem;
+  }
+  td {
+    color: var(--brown-800);
+    font-weight: 600;
+    padding: 1rem;
+  }
+}
+```
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+I had some padding for the card for both the mobile and desktop designs but the mobile design has padding for everything except the image. This was a bit tricky cause I had a class for article that added padding for the whole card including the image. Which worked fine for desktop but on mobile the image takes up the whole width.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+To match the mobile design, without having to restructure my html, Claude gave me a solution with negative margins. On mobile there is still padding but not on the image. The fix was to, just for the image, set the width to 100% of the parent plus the padding on the left and right. That way the image stretches the whole width, growing on the sides with the padding added. Then using negative margins to position the image on the edges of the screen, where the image would have been without the padding.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://www.frontendmentor.io/guides/hosting-your-solution).
+```css
+.recipe {
+  display: flex;
+  flex-direction: column;
 
-## Create a custom `README.md`
+  padding: var(--recipe-card-padding);
+  gap: 1.75rem 0rem;
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+  img {
+    width: calc(100% + var(--recipe-card-padding) * 2);
+    border-radius: 0px;
+    margin: var(--reverse-card-padding) var(--reverse-card-padding) 15px;
+  }
+}
+```
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+Before I had p tags within my list items but Claude pointed out that list item's can already hold text so you dont need extra p tag. But I did not want to go manually in each li tag and remove the p tag. Vs code has a feature where you can search for something within your code. Within that feature you can toggle regex or regular expressions that can search for patterns.
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+This was useful in getting rid of the p tag's as I was able to use a regular expression:
 
-## Submitting your solution
+```html
+<!-- <li>\n\s*<p> -->
+```
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+To find everywhere where I had an li tag followed by a p tag and could replace all instances with just an li tag. Then repeating this with the closing tags. This way I did not have to manually go through each one. This should come in handy in the future.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+### Continued development
 
-## Sharing your solution
+I would like to continue using emmet to write faster html and to think ahead and implement classes within html before writing my css to get into the habit of thinking first of reusability. I would also like to be more consistent with the values I use throughout my priject (rem instead of px) stick with one where it make sense. Also to use css variables more often for maintainability.
 
-There are multiple places you can share your solution:
+### Useful resources
 
-1. Share your solution page in the **#finished-projects** channel of our [community](https://www.frontendmentor.io/community). 
-2. Share on [X (formerly Twitter)](https://x.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in your post. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on [LinkedIn](https://www.linkedin.com/company/frontend-mentor/).
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+- [Remove Borders on Last element](https://stackoverflow.com/questions/55480980/how-to-remove-border-from-elements-in-the-last-row) - This helped me in removing the border for the last row in the table with the last-child pseudo class.
+- [Table styling](https://www.w3schools.com/cssref/pr_border-collapse.php) - This helped me get the table to look like the design with the border-collapse propety.
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+### AI Collaboration
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+I used Claude desktop to connect to my project and I mostly used it for debugging and brainstorming. I have some examples for how I used it in what I learned section. I used it on steps where I was stuck, at the end when I felt confident I asked for feedback and implemented its suggestions.
 
-## Got feedback for us?
+## Author
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
-
-**Have fun building!** 🚀
-# recipe-page
+- Frontend Mentor - [@estebanrodriguez28](https://www.frontendmentor.io/profile/estebanrodriguez28)
